@@ -4,7 +4,7 @@ import { FiSettings } from "react-icons/fi";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import { Navbar, Sidebar } from "./components";
+import { Navbar, Sidebar, ThemeSettings } from "./components";
 import { useStateContext } from "./context/ContextProvider";
 import {
   Area,
@@ -26,9 +26,10 @@ import {
 } from "./pages";
 
 const App = () => {
-  const { activeMenu } = useStateContext();
+  const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } =
+    useStateContext();
   return (
-    <div>
+    <div className={currentMode === "Light" ? "light" : "dark"}>
       <BrowserRouter>
         <div className="relative flex dark:bg-main-dark-bg">
           <div className="fixed bottom-4 right-4" style={{ zIndex: "1000" }}>
@@ -36,7 +37,8 @@ const App = () => {
               <button
                 type="button"
                 className="p-3 text-3xl text-white hover:bg-light-gray hover:drop-shadow-xl"
-                style={{ background: "blue", borderRadius: "50%" }}
+                style={{ background: currentColor, borderRadius: "50%" }}
+                onClick={() => setThemeSettings(true)}
               >
                 <FiSettings />
               </button>
@@ -52,7 +54,7 @@ const App = () => {
             </div>
           )}
           <div
-            className={`min-h-screen w-full bg-main-bg dark:bg-main-bg ${
+            className={`min-h-screen w-full bg-main-bg dark:bg-main-dark-bg ${
               activeMenu ? "md:ml-72" : "flex-2"
             }`}
           >
@@ -60,6 +62,8 @@ const App = () => {
               <Navbar />
             </div>
             <div>
+              {themeSettings && <ThemeSettings />}
+
               <Routes>
                 {/* Dashboard */}
                 <Route path="/" element={<Ecommerce />} />

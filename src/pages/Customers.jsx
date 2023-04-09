@@ -1,26 +1,24 @@
-import React from "react";
 import {
-  GridComponent,
-  ColumnsDirective,
   ColumnDirective,
-  Inject,
-  Resize,
-  Sort,
-  Selection,
-  Search,
-  Page,
-  ExcelExport,
-  Toolbar,
+  ColumnsDirective,
   Edit,
   Filter,
+  GridComponent,
+  Inject,
+  Page,
+  Search,
+  Selection,
+  Sort,
+  Toolbar,
 } from "@syncfusion/ej2-react-grids";
+import React from "react";
 
 import { Header } from "../components";
 import { customersData, customersGrid } from "../data/dummy";
 
 const Customers = () => {
   return (
-    <div className="p-2 m-2 bg-white rounded-3xl md:m-10 md:p-10 ">
+    <div className="m-2 rounded-3xl bg-white p-2 md:m-10 md:p-10 ">
       <Header category="Page" title="Customers" />
 
       <GridComponent
@@ -36,17 +34,7 @@ const Customers = () => {
           ))}
         </ColumnsDirective>
         <Inject
-          services={[
-            Resize,
-            Sort,
-            Selection,
-            Search,
-            Page,
-            ExcelExport,
-            Toolbar,
-            Edit,
-            Filter
-          ]}
+          services={[Sort, Selection, Search, Page, Toolbar, Edit, Filter]}
         />
       </GridComponent>
     </div>

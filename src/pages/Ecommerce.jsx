@@ -4,8 +4,10 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { Button, SparkLine } from "../components";
 import { SparklineAreaData, earningData } from "../data/dummy";
 import StackChart from "../components/Charts/StackChart"
+import { useStateContext } from "../context/ContextProvider"
 
 const Ecommerce = () => {
+ const {currentColor} = useStateContext()
   return (
     <div className="mt-4">
       <div className="flex flex-wrap justify-center lg:flex-nowrap">
@@ -19,7 +21,7 @@ const Ecommerce = () => {
           <div className="mt-6">
             <Button
               color="white"
-              bgColor="blue"
+              bgColor={currentColor}
               text="Download"
               borderRadius="10px"
             />
@@ -91,31 +93,29 @@ const Ecommerce = () => {
 
               <div className="mt-5">
                 <SparkLine
-                  currentColor="blue"
+                  currentColor={currentColor}
                   id="line-sparkline"
                   height="80px"
                   width="250px"
                   type="Line"
                   data={SparklineAreaData}
-                  color="blue"
+                  color={currentColor}
                 />
               </div>
 
               <div className="mt-10">
                 <Button
                   color="white"
-                  bgColor="blue"
+                  bgColor={currentColor}
                   text="Download Report"
                   borderRadius="10px"
                 />
               </div>
             </div>
 
-
             <div>
               <StackChart width="320px" height="360px" />
             </div>
-
           </div>
         </div>
       </div>
