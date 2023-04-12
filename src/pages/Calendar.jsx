@@ -6,7 +6,7 @@ import { scheduleData } from '../data/dummy'
 
 const Calendar = () => {
   return (
-	<div className='p-2 m-4 mt-5 bg-white md:m-4 rounded-3xl md:p-4 '>
+	<div className='p-2 m-2 bg-white md:m-10 md:p-10 rounded-3xl '>
     <Header category={"App"} title={"Calendar"} />
 
     <ScheduleComponent

@@ -10,7 +10,7 @@ import { kanbanData, kanbanGrid } from "../data/dummy";
 
 const Kanban = () => {
   return (
-    <div className="m-4 mt-5 rounded-3xl bg-white p-2 md:m-4 md:p-4 ">
+    <div className="p-2 m-2 bg-white rounded-3xl md:m-10 md:p-10 ">
       <Header category={"App"} title={"Kanban"} />
 
       <KanbanComponent
