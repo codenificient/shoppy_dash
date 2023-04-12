@@ -16,7 +16,7 @@ import {
 } from "../../data/dummy";
 import { useStateContext } from "../../context/ContextProvider"
 
-const LineChart = () => {
+const LineChart = ({title}) => {
   const {currentMode} = useStateContext()
   return (
     <ChartComponent
@@ -27,6 +27,8 @@ const LineChart = () => {
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
       background={currentMode === "Dark" ? "#33373e" : "#fff"}
+      title={title}
+      titleStyle={currentMode === "Dark" ? "#fff" : "#33373e"}
     >
       <Inject services={[Tooltip, LineSeries, DateTime, Legend]} />
       <SeriesCollectionDirective>

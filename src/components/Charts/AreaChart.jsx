@@ -15,7 +15,7 @@ import {
   areaPrimaryYAxis,
 } from "../../data/dummy";
 
-const AreaChart = () => {
+const AreaChart = ({ title }) => {
   const { currentMode } = useStateContext();
 
   return (
@@ -27,6 +27,8 @@ const AreaChart = () => {
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
       background={currentMode === "Dark" ? "#33373e" : "#fff"}
+      title={title}
+      titleStyle={["bold", currentMode === "Dark" ? "#fff" : "#33373e" ]}
     >
       <Inject services={[SplineAreaSeries, DateTime, Legend]} />
       <SeriesCollectionDirective>

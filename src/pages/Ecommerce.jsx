@@ -1,10 +1,11 @@
-import React from "react";
-import { GoPrimitiveDot } from "react-icons/go";
+import React from "react"
+import { GoPrimitiveDot } from "react-icons/go"
 
-import { Button, SparkLine } from "../components";
-import { SparklineAreaData, earningData } from "../data/dummy";
+import { Button, SparkLine } from "../components"
 import StackChart from "../components/Charts/StackChart"
 import { useStateContext } from "../context/ContextProvider"
+import { SparklineAreaData, earningData } from "../data/dummy"
+import { BsCurrencyDollar } from "react-icons/bs"
 
 const Ecommerce = () => {
  const {currentColor} = useStateContext()
@@ -15,8 +16,15 @@ const Ecommerce = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="font-bold text-gray-400">Earnings</p>
-              <p className="text-3xl">$80,934</p>
+              <p className="text-2xl">$80,934</p>
             </div>
+            <button
+              type="button"
+              style={{ backgroundColor: currentColor }}
+              className="opacity-0.9 rounded-full p-4 text-2xl text-white  hover:drop-shadow-xl"
+            >
+              <BsCurrencyDollar />
+            </button>
           </div>
           <div className="mt-6">
             <Button

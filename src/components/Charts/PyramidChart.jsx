@@ -1,17 +1,18 @@
+import React from 'react'
 import {
   AccumulationChartComponent,
-  AccumulationDataLabel,
-  AccumulationLegend,
-  AccumulationTooltip,
-  Inject,
-  PieSeries,
   AccumulationSeriesCollectionDirective,
-  AccumulationSeriesDirective
+  AccumulationSeriesDirective,
+  Inject,
+  AccumulationLegend,
+  AccumulationDataLabel,
+  AccumulationTooltip,
+  PyramidSeries,
+  AccumulationSelection,
 } from "@syncfusion/ej2-react-charts";
-import React from "react";
-import { useStateContext } from "../../context/ContextProvider"
+import { useStateContext } from "../../context/ContextProvider";
 
-const PieChart = ({ id, data, legendVisiblity, height, title }) => {
+const PyramidChart = ({ id, data, legendVisiblity, height, title }) => {
   const { currentMode } = useStateContext();
 
   return (
@@ -22,36 +23,35 @@ const PieChart = ({ id, data, legendVisiblity, height, title }) => {
       background={currentMode === "Dark" ? "#33373E" : "#fff"}
       tooltip={{ enable: true }}
       title={title}
-      titleStyle={currentMode === "Dark" ? "#fff" : "#33373e"}
     >
       <Inject
         services={[
           AccumulationLegend,
-          PieSeries,
+          PyramidSeries,
           AccumulationDataLabel,
           AccumulationTooltip,
+          AccumulationSelection,
         ]}
       />
       <AccumulationSeriesCollectionDirective>
         <AccumulationSeriesDirective
-          name="Sale"
+          name="Food"
           dataSource={data}
           xName="x"
           yName="y"
-          innerRadius="40%"
-          startAngle={0}
-          endAngle={360}
-          radius="70%"
           explode
-          explodeOffset="10%"
-          explodeIndex={2}
+          type="Pyramid"
+          width="45%"
+          height="80%"
+          neckWidth="15%"
+          gapRatio={0.03}
+          emptyPointSettings={{ mode: "Drop", fill: "red" }}
           dataLabel={{
             visible: true,
             name: "text",
             position: "Inside",
             font: {
               fontWeight: "600",
-              color: "#fff",
             },
           }}
         />
@@ -60,4 +60,4 @@ const PieChart = ({ id, data, legendVisiblity, height, title }) => {
   );
 };
 
-export default PieChart;
+export default PyramidChart
