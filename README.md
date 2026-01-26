@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Shoppy Dashboard
+
+[![Live Demo](https://api.microlink.io/?url=https://shoppy-dash.vercel.app&screenshot=true&meta=false&embed=screenshot.url)](https://shoppy-dash.vercel.app)
+
+**[View Live Demo →](https://shoppy-dash.vercel.app)**
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
