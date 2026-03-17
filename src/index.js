@@ -1,15 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+import { registerLicense } from "@syncfusion/ej2-base";
 import App from "./App";
 
 import { ContextProvider } from "./context/ContextProvider";
 import "./index.css";
-// console.log(process.env.REACT_APP_SF);
-ReactDOM.render(
+
+// Register Syncfusion license key from environment variable
+if (process.env.REACT_APP_SYNCFUSION_LICENSE) {
+  registerLicense(process.env.REACT_APP_SYNCFUSION_LICENSE);
+}
+
+const root = createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <ContextProvider>
       <App />
     </ContextProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );

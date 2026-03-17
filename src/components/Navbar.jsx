@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { BsChatLeft } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { RiNotification3Line } from "react-icons/ri";
@@ -49,9 +50,12 @@ const Navbar = () => {
   }, [setScreenSize]);
 
   useEffect(() => {
-    if (screenSize <= 900) setActiveMenu(false);
-    setActiveMenu(true);
-  }, [screenSize, setScreenSize, setActiveMenu]);
+    if (screenSize <= 900) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize, setActiveMenu]);
 
   return (
     <div className="relative flex justify-between p-2 md:mx-6">
@@ -74,7 +78,7 @@ const Navbar = () => {
           dotColor={"#03c9d7"}
           customFunc={() => handleClick("chat")}
           color={currentColor}
-          icon={<FiShoppingCart />}
+          icon={<BsChatLeft />}
         />
         <NavButton
           title={"Notifications"}

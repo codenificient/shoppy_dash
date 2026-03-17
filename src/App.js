@@ -1,10 +1,10 @@
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-import React from "react";
+import React, { Suspense } from "react";
 import { FiSettings } from "react-icons/fi";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import { Navbar, Sidebar, ThemeSettings } from "./components";
+import { ErrorBoundary, Footer, Navbar, Sidebar, ThemeSettings } from "./components";
 import { useStateContext } from "./context/ContextProvider";
 import {
   Area,
@@ -24,6 +24,13 @@ import {
   Pyramid,
   Stacked,
 } from "./pages";
+import NotFound from "./pages/NotFound";
+
+const LoadingSpinner = () => (
+  <div className="flex min-h-[400px] items-center justify-center">
+    <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-cyan-500" />
+  </div>
+);
 
 const App = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } =
@@ -64,32 +71,41 @@ const App = () => {
             <div>
               {themeSettings && <ThemeSettings />}
 
-              <Routes>
-                {/* Dashboard */}
-                <Route path="/" element={<Ecommerce />} />
-                <Route path="/ecommerce" element={<Ecommerce />} />
+              <ErrorBoundary>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Routes>
+                    {/* Dashboard */}
+                    <Route path="/" element={<Ecommerce />} />
+                    <Route path="/ecommerce" element={<Ecommerce />} />
 
-                {/* Pages  */}
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/customers" element={<Customers />} />
+                    {/* Pages  */}
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/employees" element={<Employees />} />
+                    <Route path="/customers" element={<Customers />} />
 
-                {/* Apps */}
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
+                    {/* Apps */}
+                    <Route path="/kanban" element={<Kanban />} />
+                    <Route path="/editor" element={<Editor />} />
+                    <Route path="/calendar" element={<Calendar />} />
+                    <Route path="/color-picker" element={<ColorPicker />} />
 
-                {/* Charts */}
-                <Route path="/line" element={<Line />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/financial" element={<Financial />} />
-                <Route path="/color-mapping" element={<ColorMapping />} />
-                <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
-              </Routes>
+                    {/* Charts */}
+                    <Route path="/line" element={<Line />} />
+                    <Route path="/area" element={<Area />} />
+                    <Route path="/bar" element={<Bar />} />
+                    <Route path="/pie" element={<Pie />} />
+                    <Route path="/financial" element={<Financial />} />
+                    <Route path="/color-mapping" element={<ColorMapping />} />
+                    <Route path="/pyramid" element={<Pyramid />} />
+                    <Route path="/stacked" element={<Stacked />} />
+
+                    {/* 404 */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+              </ErrorBoundary>
+
+              <Footer />
             </div>
           </div>
         </div>
