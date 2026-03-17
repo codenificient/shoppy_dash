@@ -26,6 +26,26 @@
     -->
     <title>Shoppy Dashboard - CodenificienT</title>
       <script defer src="https://analytics.afrotomation.com/track" data-website-id="e6b20d18-1efd-4f8b-a895-8e577fc22c02"></script>
+    <script>
+      // Codenalytics telemetry
+      (function(){
+        var endpoint = "https://codenalytics.vercel.app/api/events";
+        var apiKey = "proj_shoppy_dash_key";
+        function track(name, props) {
+          try {
+            navigator.sendBeacon(endpoint, JSON.stringify({
+              apiKey: apiKey,
+              eventType: name,
+              namespace: "shoppy-dash",
+              properties: Object.assign({ url: location.href, referrer: document.referrer }, props || {}),
+              sessionId: sessionStorage.getItem("_cs") || (sessionStorage._cs = Math.random().toString(36).slice(2)),
+              timestamp: new Date().toISOString()
+            }));
+          } catch(e) {}
+        }
+        window.addEventListener("load", function(){ track("page_view"); });
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
