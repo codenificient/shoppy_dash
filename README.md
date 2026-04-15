@@ -1,8 +1,8 @@
 # Shoppy Dashboard
 
-[![Live Demo](https://api.microlink.io/?url=https://shoppy-dash.vercel.app&screenshot=true&meta=false&embed=screenshot.url)](https://shoppy-dash.vercel.app)
+[![Live Demo](https://api.microlink.io/?url=https://shoppy-dash.tioye.dev&screenshot=true&meta=false&embed=screenshot.url)](https://shoppy-dash.tioye.dev)
 
-**[View Live Demo →](https://shoppy-dash.vercel.app)**
+**[View Live Demo →](https://shoppy-dash.tioye.dev)**
 
 ---
 
