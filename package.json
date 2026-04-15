@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@syncfusion/ej2": "^33.1.44",
+    "@syncfusion/ej2-base": "^33.1.45",
     "@syncfusion/ej2-react-calendars": "^33.1.44",
     "@syncfusion/ej2-react-charts": "^33.1.44",
     "@syncfusion/ej2-react-dropdowns": "^33.1.44",
@@ -26,12 +27,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -46,12 +41,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^4.6.2",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
@@ -60,8 +49,11 @@
   "overrides": {
     "nth-check": "^2.1.1",
     "postcss": "^8.4.49",
-    "schema-utils": "^4.3.0",
     "ajv": "^8.17.1",
-    "ajv-keywords": "^5.1.0"
+    "fork-ts-checker-webpack-plugin": {
+      "ajv": "^8.17.1",
+      "ajv-keywords": "^5.1.0",
+      "schema-utils": "^4.3.0"
+    }
   }
 }

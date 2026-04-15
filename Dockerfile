@@ -1,12 +1,13 @@
 # syntax=docker/dockerfile:1.7
 FROM node:22-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN if [ -f package-lock.json ]; then npm ci --legacy-peer-deps; else npm install --legacy-peer-deps; fi
+RUN npm install -g pnpm@10
+COPY package*.json pnpm-lock.yaml* ./
+RUN pnpm install --no-frozen-lockfile
 COPY . .
 ENV CI=true
 ENV GENERATE_SOURCEMAP=false
-RUN npm run build
+RUN pnpm run build
 
 FROM nginx:1.27-alpine AS runner
 RUN apk add --no-cache wget
