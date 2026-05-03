@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7
-FROM public.ecr.aws/docker/library/node:22-alpine AS builder
+FROM public.ecr.aws/docker/library/node:25-alpine AS builder
 # bun replaces oven/bun:* builder image. Pulling node from public.ecr.aws
 # (no rate limit) and installing bun keeps build reproducible without
 # touching docker.io.
