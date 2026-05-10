@@ -12,7 +12,7 @@ ENV CI=true
 ENV GENERATE_SOURCEMAP=false
 RUN bun run build
 
-FROM mirror.gcr.io/library/nginx:1.27-alpine AS runner
+FROM mirror.gcr.io/library/nginx:1.29-alpine AS runner
 RUN apk add --no-cache wget
 COPY --from=builder /app/build /usr/share/nginx/html
 RUN printf 'server {\n  listen 3000;\n  server_name _;\n  root /usr/share/nginx/html;\n  index index.html;\n  location / { try_files $uri $uri/ /index.html; }\n  location /health { return 200 "ok\\n"; add_header Content-Type text/plain; }\n}\n' > /etc/nginx/conf.d/default.conf
