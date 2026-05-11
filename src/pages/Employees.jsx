@@ -1,54 +1,42 @@
-import {
-  ColumnDirective,
-  ColumnsDirective,
-  ContextMenu,
-  Edit,
-  GridComponent,
-  Inject,
-  Page,
-  Resize,
-  Search,
-  Sort,
-  Toolbar,
-} from "@syncfusion/ej2-react-grids";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Header } from "../components";
-import { employeesData, employeesGrid } from "../data/dummy";
+import { employeesData } from "../data/dummy";
 
 const Employees = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="m-2 rounded-3xl bg-white p-2 md:m-10 md:p-10">
       <Header category="Page" title="Employees" />
-
-      {loading ? (
-        <div className="flex min-h-[300px] items-center justify-center">
-          <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-cyan-500" />
-        </div>
-      ) : (
-        <GridComponent
-          dataSource={employeesData}
-          allowPaging
-          allowSorting
-          toolbar={["Search"]}
-          width="auto"
-        >
-          <ColumnsDirective>
-            {employeesGrid.map((item, index) => (
-              <ColumnDirective key={index} {...item} />
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left">
+          <thead>
+            <tr className="border-b border-gray-200 text-gray-500 uppercase text-xs">
+              <th className="py-3 px-4">Employee</th>
+              <th className="py-3 px-4">Designation</th>
+              <th className="py-3 px-4">Country</th>
+              <th className="py-3 px-4">Hire Date</th>
+              <th className="py-3 px-4">Reports To</th>
+              <th className="py-3 px-4">ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {employeesData.map((row) => (
+              <tr key={row.EmployeeID} className="border-b border-gray-100 hover:bg-gray-50">
+                <td className="py-2 px-4">
+                  <div className="flex items-center gap-3">
+                    <img src={row.EmployeeImage} alt={row.Name} className="h-10 w-10 rounded-full object-cover" />
+                    <span>{row.Name}</span>
+                  </div>
+                </td>
+                <td className="py-2 px-4">{row.Title}</td>
+                <td className="py-2 px-4">{row.Country}</td>
+                <td className="py-2 px-4">{row.HireDate ? new Date(row.HireDate).toLocaleDateString() : ""}</td>
+                <td className="py-2 px-4">{row.ReportsTo}</td>
+                <td className="py-2 px-4">{row.EmployeeID}</td>
+              </tr>
             ))}
-          </ColumnsDirective>
-          <Inject
-            services={[Resize, Sort, ContextMenu, Search, Page, Toolbar, Edit]}
-          />
-        </GridComponent>
-      )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

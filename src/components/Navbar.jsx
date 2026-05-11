@@ -5,7 +5,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { RiNotification3Line } from "react-icons/ri";
 
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import Tooltip from "./Tooltip";
 import { useStateContext } from "../context/ContextProvider";
 
 import avatar from "../data/avatar.jpg";
@@ -15,7 +15,7 @@ import Notification from "./Notification";
 import UserProfile from "./UserProfile";
 
 const NavButton = ({ title, customFunc, color, dotColor, icon }) => (
-  <TooltipComponent content={title} position="BottomCenter">
+  <Tooltip content={title} position="BottomCenter">
     <button
       type="button"
       onClick={customFunc}
@@ -28,7 +28,7 @@ const NavButton = ({ title, customFunc, color, dotColor, icon }) => (
       />
       {icon}
     </button>
-  </TooltipComponent>
+  </Tooltip>
 );
 
 const Navbar = () => {
@@ -87,7 +87,7 @@ const Navbar = () => {
           color={currentColor}
           icon={<RiNotification3Line />}
         />
-        <TooltipComponent content={"Profile"} position="BottomCenter">
+        <Tooltip content={"Profile"} position="BottomCenter">
           <div
             className="flex cursor-pointer items-center gap-2 rounded-lg p-1 hover:bg-light-gray"
             onClick={() => handleClick("userProfile")}
@@ -101,7 +101,7 @@ const Navbar = () => {
             </p>
             <MdKeyboardArrowDown className="text-14 text-gray-400" />
           </div>
-        </TooltipComponent>
+        </Tooltip>
         {isClicked.cart && <Cart />}
         {isClicked.chat && <Chat />}
         {isClicked.userProfile && <UserProfile />}

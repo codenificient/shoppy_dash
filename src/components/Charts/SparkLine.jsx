@@ -1,35 +1,28 @@
-import {
-  Inject,
-  SparklineComponent,
-  SparklineTooltip,
-} from "@syncfusion/ej2-react-charts";
 import React from "react";
+import {
+  LineChart,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 
+// data prop: array of {x, yval} objects
 const SparkLine = ({ id, height, width, color, data, type, currentColor }) => (
-  <SparklineComponent
-    id={id}
-    height={height}
-    width={width}
-    lineWidth={1}
-    valueType="Numeric"
-    fill={color}
-    border={{ color: currentColor, width: 2 }}
-    tooltipSettings={{
-      visible: true,
-      // eslint-disable-next-line no-template-curly-in-string
-      format: "${x} : data ${yval}",
-      trackLineSettings: {
-        visible: true,
-      },
-    }}
-    markerSettings={{ visible: ["All"], size: 2.5, fill: currentColor }}
-    dataSource={data}
-    xName="x"
-    yName="yval"
-    type={type}
-  >
-    <Inject services={[SparklineTooltip]} />
-  </SparklineComponent>
+  <ResponsiveContainer width={width || "100%"} height={parseInt(height) || 80}>
+    <LineChart data={data}>
+      <Line
+        type="monotone"
+        dataKey="yval"
+        stroke={currentColor || color || "#03C9D7"}
+        dot={false}
+        strokeWidth={2}
+      />
+      <Tooltip
+        formatter={(v, n, p) => [v, "data"]}
+        labelFormatter={(label) => `${label}`}
+      />
+    </LineChart>
+  </ResponsiveContainer>
 );
 
 export default SparkLine;

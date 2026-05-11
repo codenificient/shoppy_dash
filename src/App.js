@@ -1,10 +1,10 @@
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import React, { Suspense } from "react";
 import { FiSettings } from "react-icons/fi";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import { ErrorBoundary, Footer, Navbar, Sidebar, ThemeSettings } from "./components";
+import Tooltip from "./components/Tooltip";
 import { useStateContext } from "./context/ContextProvider";
 import {
   Area,
@@ -40,7 +40,7 @@ const App = () => {
       <BrowserRouter>
         <div className="relative flex dark:bg-main-dark-bg">
           <div className="fixed bottom-4 right-4" style={{ zIndex: "1000" }}>
-            <TooltipComponent content="Settings" position="Top">
+            <Tooltip content="Settings" position="Top">
               <button
                 type="button"
                 className="p-3 text-3xl text-white hover:bg-light-gray hover:drop-shadow-xl"
@@ -49,7 +49,7 @@ const App = () => {
               >
                 <FiSettings />
               </button>
-            </TooltipComponent>
+            </Tooltip>
           </div>
           {activeMenu ? (
             <div className="fixed bg-white sidebar w-72 dark:bg-secondary-dark-bg">
